@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.DAO.EmployeeDAO">
+  
+  <select id="login" parameterType="String" resultType="Employee">
+  		select * from employee where name = #{name}
+  </select>
+
+  <select id="queryAll" resultType="Employee">
+      select * from employee
+  </select>
+
+    <select id="queryId" parameterType="String" resultType="Employee">
+
+        select * from employee where id = #{id}
+    </select>
+
+    <select id="queryName" parameterType="Employee" resultType="Employee">
+        select * from employee where name = #{name} and id != #{id}
+    </select>
+
+    <update id="update" parameterType="Employee" >
+        update employee set name = #{name} , salary = #{salary},age=#{age}
+        where id=#{id}
+    </update>
+    <delete id="delete" parameterType="String">
+
+        delete from employee where id = #{id}
+    </delete>
+
+    <insert id="add" parameterType="Employee">
+
+        insert into employee (id,name,salary,age) values(em_seq.nextval,#{name},#{salary},#{age})
+    </insert>
+</mapper>
